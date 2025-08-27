@@ -11,7 +11,7 @@ test.beforeEach("se connecter", async ({page})=>{
     await lp.cliquer()
 })
 
-test("ajout de produits", async ({page})=>{
+test("ajout de produits",{tag: '@sanity'}, async ({page})=>{
     const pp = new productPage(page)
     
     const produits= await pp.getRandomProducts(2)

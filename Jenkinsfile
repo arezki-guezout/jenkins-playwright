@@ -15,7 +15,7 @@ pipeline{
         }
         stage('run smoke test'){
             steps{
-                echo 'npx playwright test --grep @smoke'
+                echo 'npx playwright test'
             }
         }
         stage('run user test'){

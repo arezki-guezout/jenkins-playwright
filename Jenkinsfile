@@ -20,7 +20,7 @@ pipeline{
         }
         stage('run user test'){
             steps{
-                echo 'npx playwright test --grep ${params.TAG}'
+                echo "npx playwright test --grep ${params.TAG}"
             }
         }
     }

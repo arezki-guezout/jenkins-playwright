@@ -24,6 +24,7 @@ pipeline{
                 script{
                     if(params.ALLURE){
                         sh "npx playwright test --grep ${params.TAG} --reporter=allure-playwright"
+                        stash name: 'allure-results', includes: 'allure-results/'
                     }
                     else{
                         sh "npx playwright test --grep ${params.TAG}"
@@ -39,11 +40,12 @@ pipeline{
             archiveArtifacts 'test-results/**'
             script{
                 if(params.ALLURE){
+                    unstash 'allure-results'
                     archiveArtifacts 'allure-results/**'
                     allure includeProperties:
                      false,
                      jdk: '',
-                     results: [[path: 'build/allure-results']]
+                     results: [[path: 'playwright/allure-results']]
                 }
             }
             

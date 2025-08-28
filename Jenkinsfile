@@ -40,6 +40,10 @@ pipeline{
             script{
                 if(params.ALLURE){
                     archiveArtifacts 'allure-results/**'
+                    allure includeProperties:
+                     false,
+                     jdk: '',
+                     results: [[path: 'build/allure-results']]
                 }
             }
             

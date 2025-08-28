@@ -43,8 +43,8 @@ pipeline{
     }
     post{
         always{
-            unstash 'junit-report'
-            junit 'playwright-report/junit/results.xml'
+            //unstash 'junit-report'
+            //junit 'playwright-report/junit/results.xml'
             script{
                 if(params.ALLURE){
                     archiveArtifacts 'allure-results/**'

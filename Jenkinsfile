@@ -35,8 +35,6 @@ pipeline{
     }
     post{
         always{
-            archiveArtifacts 'playwright-report/**'
-            archiveArtifacts 'test-results/**'
             junit 'playwright-report/results.xml'
             script{
                 if(params.ALLURE){

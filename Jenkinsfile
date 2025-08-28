@@ -33,5 +33,19 @@ pipeline{
             }
         }
     }
-    
+    post{
+        always{
+            //junit 'playwright-report/junit/results.xml'
+            script{
+                if(params.ALLURE){
+                    archiveArtifacts 'allure-results/**'
+                    allure includeProperties:
+                     false,
+                     jdk: '',
+                     results: [[path: 'allure-results/']]
+                }
+            }
+            
+        }
+    }
 }

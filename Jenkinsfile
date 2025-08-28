@@ -1,10 +1,5 @@
 pipeline{
-    agent{
-        docker{
-            image 'maven:3.9.11-eclipse-temurin-24-noble'
-            
-        }
-    }
+    agent any
     parameters{
         choice(name:'TAG', choices:['@regression', '@sanity'])
         booleanParam(name:'ALLURE', defaultValue: false, description: 'generation de rapport allure')

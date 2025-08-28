@@ -23,10 +23,10 @@ pipeline{
             steps{
                 script{
                     if(params.ALLURE){
-                        sh "npx playwright test --grep ${params.TAG} --reporter=allure-playwright"
+                        sh "npx playwright test --grep ${params.TAG} --reporter=junit,allure-playwright"
                     }
                     else{
-                        sh "npx playwright test --grep ${params.TAG}"
+                        sh "npx playwright test --grep ${params.TAG} --reporter=junit"
                     }
                 }
                 
@@ -37,6 +37,7 @@ pipeline{
         always{
             archiveArtifacts 'playwright-report/**'
             archiveArtifacts 'test-results/**'
+            junit 'playwright-report/results.xml'
             script{
                 if(params.ALLURE){
                     archiveArtifacts 'allure-results/**'

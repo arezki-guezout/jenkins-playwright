@@ -48,7 +48,7 @@ pipeline{
             //junit 'playwright-report/junit/results.xml'
             script{
                 if(params.ALLURE){
-                    archiveArtifacts 'allure-results/**'
+                    archiveArtifacts 'allure-results/*'
                     unstash 'allure-results'
                     allure includeProperties:
                      false,

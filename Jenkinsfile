@@ -9,6 +9,7 @@ pipeline{
             agent{
                 docker{
                     image 'mcr.microsoft.com/playwright:v1.54.0-noble'
+                    args '-u root --entrypoint='
                 }
             }
             stages{

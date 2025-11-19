@@ -28,7 +28,7 @@ pipeline{
                 script{
                     if(params.ALLURE){
                         sh "npx playwright test --grep ${params.TAG} --reporter=junit,allure-playwright"
-                        stash name: 'allure-results', includes: './allure-results/*'
+                        stash name: 'allure-results', includes: 'allure-results/*'
                     }
                     else{
                         sh "npx playwright test --grep ${params.TAG} --reporter=junit"
@@ -48,8 +48,8 @@ pipeline{
             junit 'playwright-report/junit/results.xml'
             script{
                 if(params.ALLURE){
-                    archiveArtifacts './allure-results/*'
                     unstash 'allure-results'
+                    archiveArtifacts 'allure-results/*'
                     allure includeProperties:
                      false,
                      jdk: '',
